@@ -1,0 +1,91 @@
+﻿import java.util.ArrayList;
+import java.util.List;
+import java.io.*;
+
+public class Menu {
+	private ReadWrite readWrite;
+	boolean a = true;
+	Input input = new Input();
+	Match match = new Match();
+	Stadium stadium = new Stadium();
+	Writer writer = null;
+
+	public Menu(String txtFile1, String txtFile2){
+		readWrite = new ReadWrite(txtFile1, txtFile2);
+	}
+	
+	public void startMenu(){
+		if (!readWrite.readFiles()){
+			System.out.println("Unable to read files\n Terminating program.");
+			System.exit(1);
+		}
+		//fillLists();
+		showMenu();
+	}
+	
+	public void showMenu(){
+		List<Player> team1Players = new ArrayList<Player>();
+		List<Player> team2Players = new ArrayList<Player>();
+		int x;
+		try {
+		    writer = new BufferedWriter(new OutputStreamWriter(
+		          new FileOutputStream("results.txt"), "utf-8"));
+		} catch (IOException ex) {
+		  // report
+		}
+		while (true){
+			Team team1 = new Team(input.getText("Choose first team name: "));
+			x = 1;
+			while(x == 1){
+				Player player = new Player();
+				player.setName(input.getText("Enter players full name: "));
+				player.setPosition(input.getText("Enter players position: "));
+				player.setNumber(input.getNumber("Enter players number: ", 0, 99));
+				team1Players.add(player);
+				x = input.getNumber("Would you like to add new player? 0 - no, 1 - yes: ", 0, 1);
+			}
+			x = 1;
+			System.out.println("First team created.\n");
+			
+			Team team2 = new Team(input.getText("Choose second team name: "));
+			while (x == 1){	
+				Player player = new Player();
+				player.setName(input.getText("Enter players full name: "));
+				player.setPosition(input.getText("Enter players position: "));
+				player.setNumber(input.getNumber("Enter players number: ", 0, 99));
+				team2Players.add(player);
+				x = input.getNumber("Would you like to add new player? 0 - no, 1 - yes: ", 0, 1);
+			}
+			System.out.println("Second team created.\n");
+				
+			Stadium stadium = new Stadium();
+			stadium.setName(input.getText("Enter Stadiums name: "));
+			stadium.setCity(input.getText("Enter city where stadium is located at: "));
+			stadium.setCapacity(input.getNumber("Enter stadiums capacity: ", 0, 999999));
+			System.out.println("Stadium created. \n");
+				
+			Match match = new Match();
+			match.setHomeTeam(team1.getTeamName());
+			match.setVisitorTeam(team2.getTeamName());
+			match.setScores(input.getNumber("Enter first teams score: ", 0, 999999), 
+			input.getNumber("Enter second team score: ", 0, 999999));
+			match.setStadium(stadium.getName());
+			System.out.println("Match created with given teams and stadium.\n");
+			try {
+			    writer.write(team1.getTeamName() + " " + match.getFirstTeamScore() + ":" +
+						match.getSecondTeamScore() +" " + team2.getTeamName() + " " 
+						+ "Playing in stadium " + stadium.getName() + "\r\n");
+			   	writer.write(team1.getTeamName() + "'s players: " + team1Players.toString().replaceAll("\\[|\\]|\\,", ""));
+				writer.write("\r\n"+team2.getTeamName() + "'s players: " + team2Players.toString().replaceAll("\\[|\\]|\\,", ""));
+			    
+			} catch (IOException ex) {
+			  // report
+			}
+			if (input.getNumber("Would you like to create new match? Enter 1 - yes or 0 - no: ", 0, 1) == 0){
+				System.out.println("Terminating program. Matches saved in file.");
+				try {writer.close();} catch (Exception ex){};
+				System.exit(0);
+			}
+		}
+	}
+}

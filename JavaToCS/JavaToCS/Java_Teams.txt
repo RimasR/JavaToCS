@@ -1,0 +1,42 @@
+﻿package Football.model;
+import java.util.*;
+
+
+public class Team {
+
+	List<Player> players = new ArrayList<Player>();
+	String sponsors;
+	private String teamName;
+
+
+	public Team(){
+		this.teamName = null;
+	}
+
+	public Team(String teamName){
+		this.teamName = teamName;
+	}
+
+	public void addPlayer(Player player){
+		players.add(player);
+	}
+
+	public void setTeamSponsor(String sponsor){
+		this.sponsors = sponsor;
+	}
+
+	public void setTeamName(String teamName){
+		this.teamName = teamName;
+	}
+
+	public String getTeamName(){
+		return teamName;
+	}
+	public void isCreated(boolean isCreated){
+
+	}
+	public int getNumOfPlayers(){
+		return players.size();
+	}
+
+}

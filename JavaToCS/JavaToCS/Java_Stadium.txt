@@ -1,0 +1,41 @@
+﻿package Football.model;
+
+public class Stadium {
+
+    private String name;
+    private final String country;
+    private String city;
+    private long capacity;
+
+
+    public Stadium (String country, String name, long capacity){
+        this.country = country;
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    public Stadium(){
+    	this.country = null;
+        this.name = null;
+        this.capacity = 0;
+    }
+
+    public void setCity(String city){
+        this.city = city;
+    }
+
+    public void setName(String name){
+    	this.name = name;
+    }
+
+    public void setCapacity(int capacity){
+    	this.capacity = capacity;
+    }
+
+    public String getName(){
+        return name;
+    }
+    public String getCity(){
+    	return city;
+    }
+}

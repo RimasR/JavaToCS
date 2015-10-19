@@ -1,0 +1,88 @@
+﻿package Football.ds;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.ArrayList;
+
+public class ReadWrite {
+
+    private final String skirtukas = " , ";
+    private final String fileName1;
+    private final String fileName2;
+    private BufferedReader sarasas1, sarasas2;
+    private BufferedWriter list1, list2;
+    private ArrayList<String[]> eilutes1 = new ArrayList<String[]>();
+    private ArrayList<String[]> eilutes2 = new ArrayList<String[]>();
+
+    public ReadWrite(String fileName1, String fileName2) {
+        this.fileName1 = fileName1;
+        this.fileName2 = fileName2;
+    }
+
+    public boolean readFiles() {
+        String line;
+    	try {
+            sarasas1 = new BufferedReader(new FileReader(fileName1));
+    	    while((line = sarasas1.readLine()) != null) {
+                eilutes1.add(line.split(skirtukas));
+    	    }
+    	    sarasas1.close();
+    	    sarasas2 = new BufferedReader(new FileReader(fileName2));
+    	    while((line = sarasas2.readLine()) != null) {
+                eilutes2.add(line.split(skirtukas));
+    	    }
+    	    sarasas2.close();
+        } catch (Exception e) {
+            return false;
+        }
+        try {
+    	    File file1 = new File(fileName1);
+	    if (!file1.exists()) {
+                file1.createNewFile();
+	    }
+	    list1 = new BufferedWriter(new FileWriter(file1.getAbsoluteFile()));
+	    File file2 = new File(fileName2);
+	    if (!file2.exists()) {
+	        file2.createNewFile();
+	    }
+	    list2 = new BufferedWriter(new FileWriter(file2.getAbsoluteFile()));
+	    return true;
+    	} catch (Exception e) {
+    	    return false;
+        }
+    }
+
+    public ArrayList<String[]> getText(int failas) {
+        if (failas == 1) {
+	    return eilutes1;
+	} else if (failas == 2) {
+	    return eilutes2;
+	} else {
+	    return null;
+        }
+    }
+
+    public void writeToFile(int failas, String eile) {
+        try {
+	    if (failas == 1) {
+                list1.write(eile);
+            } else if (failas == 2) {
+	        list2.write(eile);
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    public void closeFiles() {
+        try {
+            list1.flush();
+            list1.close();
+            list2.flush();
+            list2.close();
+        } catch (Exception e) {
+        }
+    }
+}

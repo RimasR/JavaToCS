@@ -1,0 +1,60 @@
+﻿
+import java.util.ArrayList;
+import java.util.List;
+
+public class Match{
+
+    private boolean isLive;
+    private boolean matchEnded;
+    private String homeTeam;
+    private String visitorTeam;
+    private int firstTeamScore;
+    private int secondTeamScore;
+    private String stadiumName;
+
+    public Match(){
+    	this.homeTeam = null;
+    	this.visitorTeam = null;
+    	this.firstTeamScore = 0;
+    	this.secondTeamScore = 0;
+    }
+    public void setLive (boolean isLive){
+        this.isLive = isLive;
+    }
+
+    public void setHomeTeam(String homeTeam){
+    	this.homeTeam = homeTeam;
+    }
+
+    public void setVisitorTeam(String visitorTeam){
+    	this.visitorTeam = visitorTeam;
+    }
+
+
+    public void setScores (int firstTeamScore, int secondTeamScore){
+    		this.firstTeamScore = firstTeamScore;
+    		this.secondTeamScore = secondTeamScore;
+    }
+
+    public int getFirstTeamScore(){
+        return firstTeamScore;
+    }
+
+    public int getSecondTeamScore(){
+    	return secondTeamScore;
+    }
+
+    public void setTeams(String homeTeam, String visitorTeam){
+    	this.homeTeam = homeTeam;
+    	this.visitorTeam = visitorTeam;
+    }
+
+    public void setStadium(String stadiumName){
+    	this.stadiumName = stadiumName;
+    }
+
+    public String getStadium(){
+    	return stadiumName;
+    }
+
+}

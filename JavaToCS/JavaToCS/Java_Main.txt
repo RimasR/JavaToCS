@@ -1,0 +1,10 @@
+﻿package Football;
+import Football.menu.Menu;
+
+public class Main {
+    public static void main (String[] cArgs){
+     	Menu object = new Menu("duom.txt", "results.txt");
+    	object.showMenu();
+    }
+
+}

@@ -1,0 +1,32 @@
+﻿package Football.ds;
+import java.util.Scanner;
+
+
+public class Input {
+
+	private Scanner scan = new Scanner(System.in);
+
+	public int getNumber(String message, int min, int max){
+		int skaicius;
+		String garbage;
+		while(true){
+			System.out.print(message);
+			if(scan.hasNextInt()){
+				skaicius = scan.nextInt();
+				if((skaicius >= min)&&(skaicius <= max)){
+					return skaicius;
+				} else {
+					System.out.println("Skaicius uz leistinu ribu!");
+				}
+			} else {
+				System.out.println("Neleistinas simbolis!");
+				garbage = scan.next();
+			}
+		}
+	}
+
+	public String getText(String message){
+		System.out.print(message);
+		return scan.next();
+	}
+}
