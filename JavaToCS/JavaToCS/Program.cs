@@ -14,9 +14,11 @@ namespace JavaToCS
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
+            Menu object = new Menu("duom.txt", "results.txt");
+            object.showMenu();
+            /*Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1());*/
         }
     }
 }
