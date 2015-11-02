@@ -11,14 +11,10 @@ namespace JavaToCS
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        [STAThread]
         static void Main()
         {
-            Menu object = new Menu("duom.txt", "results.txt");
-            object.showMenu();
-            /*Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());*/
+            Menu menu = new Menu("duom.txt", "results.txt");
+            menu.showMenu();
         }
     }
 }

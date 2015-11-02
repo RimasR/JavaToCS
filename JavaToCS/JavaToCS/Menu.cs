@@ -16,5 +16,10 @@ namespace JavaToCS
             readWrite = new ReadWrite(txtFile1, txtFile2);
         }
 
+        public void showMenu()
+        {
+
+        }
+
     }
 }
