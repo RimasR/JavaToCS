@@ -13,5 +13,13 @@ namespace JavaToCS
         private string city { get; set; }
         private long capacity { get; set; }
 
+        public void CreateStadium()
+        {
+            Input input = new Input();
+            this.name = input.GetText("Enter Stadiums name: ");
+            this.country = input.GetText("Enter Stadiums country name: ");
+            this.city = input.GetText("Enter Stadiums city name: ");
+            this.capacity = input.GetNumber("Enter Stadiums capacity", 0, 999999);
+        }
     }
 }

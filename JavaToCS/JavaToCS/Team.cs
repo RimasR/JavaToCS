@@ -17,6 +17,11 @@ namespace JavaToCS
             this.teamName = null;
         }
 
+        public Team(string teamName)
+        {
+            this.teamName = teamName;
+        }
+
         public void AddPlayer(Player player)
         {
             players.Add(player);

@@ -16,5 +16,20 @@ namespace JavaToCS
         {
             return name + " " + playerNumber + " " + position;
         }
+
+        public void SetName(string name)
+        {
+            this.name = name;
+        }
+
+        public void SetPosition(string position)
+        {
+            this.position = position;
+        }
+
+        public void SetPlayerNumber(int playerNumber)
+        {
+            this.playerNumber = playerNumber;
+        }
     }
 }
